@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Menu principal</title>
+  <script defer src="/your-path-to-fontawesome/js/solid.js"></script>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div id="containerLogo"></div>
+      <div id="containerUser">Bienvenido usuario</div>
+    </nav>
+    <div>
+      <h1 id="titulo">Sistema de Bar</h1>
+    </div>
+  </header>
+  <main>
+    <section>
+      <div class="grid-container">
+        <div class="grid-item">
+          <div class="card-container">
+            <i class="fa-regular fa-clipboard"></i>
+            <a href="./views/pedidos.html">
+              <img src="../assets/clipboard-solid.svg" alt="icono de pedido">
+              <span>Pedidos</span>
+            </a>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card-container">
+            <a href="./views/">
+              <img src="../assets/file-solid.svg" alt="">
+              <span>Ingresos</span>
+            </a>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card-container">
+            <a href="">
+              <img src="../assets/cash-register-solid.svg" alt="">
+              <span>Caja</span>
+            </a>
+          </div>
+        </div>
+        <div class="grid-item">
+          <div class="card-container">
+            <a href="./views/productos.html">
+              <img src="../assets/cart-shopping-solid.svg" alt="">
+              <span>Productos</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- <ul id="mesa-list">
+    <li>Mesa1</li>
+    <li>Mesa2</li>
+    <li>Mesa3</li>
+    <li>Mesa4</li>
+    <li>Mesa5</li>
+    <li>Mesa6</li>
+  </ul>
+
+  <h2>Agregar Comanda</h2>
+  <form id="comanda-form">
+    <select id="mesa-select"></select>
+    <input type="text" id="detalle" placeholder="Detalle de la comanda" required />
+    <button type="submit">Agregar</button>
+  </form> -->
+
+  <script src="app.js"></script>
+  <footer>
+  </footer>
+</body>
+
+</html>

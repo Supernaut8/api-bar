@@ -1,0 +1,165 @@
+/* -----------------------------------------------------------------------------Estilos generales-----------------------------------------------------------------------------*/
+body {
+  /* background-color: rgb(187, 214, 228); */
+  background-image: url("../assets/portada.jpg");
+  background-size: cover;
+  font-family: sans-serif;
+  color: white;
+}
+
+header {
+  nav {
+    margin-left: auto;
+    display: flex;
+    flex-direction: row;
+
+    span a {
+      color: white;
+    }
+  }
+
+  h2 {
+    margin: 100px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 150px;
+    font-size: 30px;
+    background-color: rgb(2, 2, 2);
+    opacity: 0.8;
+  }
+}
+
+main {
+
+  section {
+    background-color: rgb(2, 2, 2);
+    opacity: 0.8;
+    margin: auto;
+    max-width: 1400px;
+    border: 1px solid black;
+    border-radius: 12px;
+
+    .grid-container {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 250px));
+      justify-content: center;
+      align-items: center;
+
+      .grid-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+        max-width: 200px;
+        height: auto;
+        font-family: sans-serif;
+        border: 1px solid rgb(218, 10, 90);
+        /* border-radius: 12px; */
+
+        div {
+          input {
+            max-width: 100px;
+          }
+        }
+
+        .card-container {
+          height: 200px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+
+          a {
+            width: 100px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+
+            img {
+              max-height: 100px;
+            }
+
+            span {
+              margin-top: 20px;
+              font-family: sans-serif;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------Estilos menú principal------------------------------------------------------------------------*/
+header {
+  #titulo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* -----------------------------------------------------------------------------Estilos de pedido----------------------------------------------------------------------------*/
+.barTable-container {
+  max-width: 200px;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid rgb(218, 10, 90);
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 30px;
+}
+
+.order-container {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  #order-table {
+    background-color: rgb(2, 2, 2);
+    opacity: 0.8;
+    border-radius: 12px;
+  }
+
+  div {
+    margin: 20px;
+  }
+}
+
+
+/* -----------------------------------------------------------------------------Estilos de productos--------------------------------------------------------------------------*/
+main {
+  .item-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .item {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+      margin: 20px;
+    }
+  }
+}
