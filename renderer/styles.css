@@ -1,0 +1,420 @@
+/* -----------------------------------------------------------------------------Estilos generales-----------------------------------------------------------------------------*/
+body {
+  /* background-color:rgb(187, 214, 228); */
+  background-image: url("../assets/portada.jpg");
+  background-size: cover;
+  font-family: sans-serif;
+  color: rgb(11, 12, 11);
+
+
+  header {
+    nav {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-evenly;
+      height: 50px;
+      background-color: rgb(2, 2, 2);
+      opacity: 0.8;
+      color: rgb(255, 255, 255);
+
+      /* .footer-separator {
+        line-height: 1px;
+      } */
+      #containerUser {
+        /* display: flex;
+        flex-direction: row; */
+        
+        /* background-color: rgb(2, 2, 2);
+        color: rgb(255, 255, 255);
+        text-decoration: none; */
+      } 
+
+      .back-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 100px;
+        border-radius: 12px;
+        background-color: rgb(2, 2, 2);
+
+        /* span {
+          margin: auto;
+
+          a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+          }
+
+        } */
+      }
+    }
+
+    h1,
+    h2 {
+      margin: 100px auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      max-width: 350px;
+      font-size: 30px;
+      background-color: rgb(2, 2, 2);
+      opacity: 0.8;
+      color: rgb(255, 255, 255);
+    }
+  }
+
+  main {
+    height: 65vh;
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+
+      .grid-item {
+        margin: auto;
+        width: 200px;
+        height: auto;
+        font-family: sans-serif;
+        border: 1px solid rgb(218, 10, 90);
+      }
+
+      .card-container {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        a {
+          width: 100px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-decoration: none;
+
+          img {
+            max-height: 100px;
+          }
+
+          span {
+            text-align: center;
+            margin: 20px;
+            font-family: sans-serif;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/* -----------------------------------------------------------------------------Estilos menú principal------------------------------------------------------------------------*/
+header {
+  #titulo {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+main {
+  #main-menu {
+    margin: auto;
+    max-width: 1000px;
+    background-color: rgb(48, 38, 38);
+    opacity: 0.8;
+
+    .card-container {
+      background-color: rgb(255, 255, 255);
+      opacity: 0.8;
+
+      span {
+        color: black;
+      }
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------Estilos de pedidos---------------------------------------------------------------------------*/
+main {
+  #orders-section {
+    margin: auto;
+    max-width: 1100px;
+    background-color: rgb(48, 38, 38);
+    opacity: 0.8;
+
+    .card-container {
+      background-color: rgb(255, 255, 255);
+      opacity: 0.8;
+
+      span {
+        color: black;
+      }
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------Estilos tipo de pedido-----------------------------------------------------------------------*/
+/* main {
+  #orders-section {
+    .card-container {
+      background-image: url("../../assets/mesa.jpg");
+    }
+  }
+} */
+
+/* -----------------------------------------------------------------------------Estilos de pedido----------------------------------------------------------------------------*/
+#order-body {
+  background-image: url("../assets/mesas.jpg");
+  background-size: cover;
+
+  main {
+    #order-section {
+      background-color: rgb(2, 2, 2);
+      opacity: 0.8;
+      margin: auto;
+      max-width: 1400px;
+      border: 1px solid black;
+      border-radius: 12px;
+      color: white;
+
+      .barTable-container {
+        max-width: 200px;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        border: 1px solid rgb(218, 10, 90);
+      }
+
+      .grid-container {
+        .grid-item {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          max-width: 200px;
+          height: auto;
+        }
+
+        div {
+          input {
+            max-width: 100px;
+          }
+        }
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 30px;
+      }
+
+      .order-container {
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        #order-table {
+          /* background-color: rgb(2, 2, 2);
+        opacity: 0.8; */
+          border: 1px solid rgb(218, 10, 90);
+        }
+      }
+    }
+  }
+}
+
+/* -----------------------------------------------------------------------------Estilos de barra------------------------------------------------------------------------------*/
+#barra-body {
+  background-image: url("../assets/barra2.jpg");
+  background-size: cover;
+
+  #counter-section {
+    background-color: rgb(2, 2, 2);
+    opacity: 0.8;
+    margin: auto;
+    max-width: 400px;
+    border: 1px solid black;
+    border-radius: 12px;
+    color: white;
+
+    .counter-item {
+      margin: 50px auto;
+      width: 200px;
+      height: auto;
+      font-family: sans-serif;
+      border: 1px solid rgb(218, 10, 90);
+    }
+
+    .button-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin: 30px;
+    }
+  }
+}
+
+
+/* ---------------------------------------------------------------------------Estilos de artículos----------------------------------------------------------------------------*/
+.items-body {
+  background-image: url("../assets/bebidas.jpg");
+  background-size: cover;
+  
+  .items-section {
+    margin: auto;
+    max-width: 1100px;
+    background-color: rgb(78, 78, 78);
+    opacity: 0.8;
+    
+    .grid-container a {
+      color: rgb(0, 0, 0);
+      text-decoration: none;
+      
+    }
+  }
+}
+
+
+/* -----------------------------------------------------------------------------Estilos de menús------------------------------------------------------------------------------*/
+.menus-body {
+  .items-section {
+    margin: auto;
+    max-width: 1100px;
+    background-color: rgb(48, 38, 38);
+    opacity: 0.8;
+    
+    .grid-container a {
+      color: rgb(255, 255, 255);
+      text-decoration: none;
+      
+    }
+  }
+}
+/* -----------------------------------------------------------------------------Estilos de agrega artículos-------------------------------------------------------------------*/
+#addItems-section {
+  #items-form {
+    .grid-container {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      background-color: rgb(48, 38, 38);
+      opacity: 0.8;
+
+      .grid-item {
+        span {
+          background-color: white;
+        }
+
+        width: auto;
+
+        /* .inputs-container {
+          display: flex;
+          flex-direction: row; */
+
+        /* input, select, span {
+            min-height: 30px;
+          } 
+        }*/
+      }
+    }
+  }
+
+  .aggregate-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;
+
+    h3 {
+      background-color: rgb(2, 2, 2);
+      opacity: 0.8;
+      color: rgb(255, 255, 255);
+    }
+
+    #aggregate-table {
+      border: 1px solid black;
+      background-color: rgb(255, 255, 255);
+      opacity: 0.8;
+
+      th {
+        border: 1px solid black;
+      }
+
+      tr {
+        border: 1px solid black;
+
+        td {
+          border: 1px solid black;
+        }
+      }
+    }
+  }
+}
+
+
+
+/* -----------------------------------------------------------------------------Estilos de caja-------------------------------------------------------------------------------*/
+#cash-section {
+  margin: auto;
+  max-width: 1100px;
+  background-color: rgb(48, 38, 38);
+  opacity: 0.8;
+
+  .cash-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 10px auto;
+    background-color: rgb(255, 255, 255);
+    width: 66px;
+  }
+}
+
+/* -----------------------------------------------------------------------------Estilos de footer-----------------------------------------------------------------------------*/
+footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50px;
+  background-color: rgb(2, 2, 2);
+  opacity: 0.8;
+  color: rgb(255, 255, 255);
+
+  .brand-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly; 
+  }
+}
+
+
+/* ----------------------------------------------------------------------------Estilos de delivery----------------------------------------------------------------------------*/
+.containerDelivery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  h1 {
+    margin: 100px auto;
+    text-align: center;
+    font-size: 40px;
+    color: rgb(10, 10, 10);
+    background-color: white;
+  }
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barra</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script defer src="/your-path-to-fontawesome/js/solid.js"></script>
+</head>
+
+<body id="barra-body">
+    <header>
+        <nav>
+            <div class="back-container">
+                <span>
+                    <a href="../index.html">Volver</a>
+                </span>
+            </div>
+        </nav>
+        <h2>Pedido</h2>
+    </header>
+    <main>
+        <section id="counter-section">
+            <div class="counter-item">
+                <span>Bebidas</span>
+                <select name="alimentoBebidas" id="alimentoBebidas">
+                    <option value="">Seleccione una opción</option>
+                    <option value="Coca">Coka lata</option>
+                    <option value="CocaCero">Coka cero lata</option>
+                    <option value="Sprite">Sprite lata</option>
+                    <option value="Cerveza">Cerveza lata</option>
+                    <option value="Vino">Vino</option>
+                    <option value="Whisky">Whisky</option>
+                    <option value="Gancia">Gancia vaso</option>
+                    <option value="Fernet">Fernet vaso</option>
+                </select>
+                <div>
+                    <input type="text" id="cantidadBebidas" name="cantidadBebidas" placeholder="Unidades">
+                </div>
+                <!-- <button type="submit">Agregar</button> -->
+            </div>
+            <div class="button-container">
+                <input type="submit" id="agregar" name="agregar" value="agregar">
+            </div>
+        </section>
+    </main>
+    <script type="module" src="./tablaPedido.js"></script>
+    <script type="module" src="../alimentos.js"></script>
+</body>
+</html>

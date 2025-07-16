@@ -1,0 +1,16 @@
+{
+  "name": "app-bar",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "better-sqlite3": "^11.10.0",
+    "electron": "^36.2.1"
+  }
+}

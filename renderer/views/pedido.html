@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy"
+      content="default-src 'self';
+               script-src 'self' https://cdnjs.cloudflare.com;
+               style-src 'self' https://cdnjs.cloudflare.com;
+               font-src 'self' https://cdnjs.cloudflare.com;
+               img-src 'self' data:;">
+    <title>Pedido</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script defer src="/your-path-to-fontawesome/js/solid.js"></script>
+</head>
+
+<body id="order-body">
+    <header>
+        <nav>
+            <div class="back-container">
+                <span>
+                    <!-- <a href="../views/pedidos.html">Volver</a> -->
+                     <a href="../index.html">Volver</a>
+                </span>
+            </div>
+        </nav>
+        <h2>Pedido</h2>
+    </header>
+    <main>
+        <section id="order-section">
+            <form id="order-form">
+                <div class="barTable-container">
+                    <span>Mesa</span>
+                    <select name="mesa" id="mesa">
+                        <option value="">Seleccione una opción</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                    </select>
+                </div>
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <span>Bebidas</span>
+                        <select name="alimentoBebidas" id="alimentoBebidas">
+                            <option value="">Seleccione una opción</option>
+                            <option value="Coca">Coka lata</option>
+                            <option value="CocaCero">Coka cero lata</option>
+                            <option value="Sprite">Sprite lata</option>
+                            <option value="Cerveza">Cerveza lata</option>
+                            <option value="Vino">Vino</option>
+                            <option value="Whisky">Whisky</option>
+                            <option value="Gancia">Gancia vaso</option>
+                            <option value="Fernet">Fernet vaso</option>
+                        </select>
+                        <div>
+                            <input type="text" id="cantidadBebidas" name="cantidadBebidas" placeholder="Unidades">
+                        </div>
+                        <!-- <button type="submit">Agregar</button> -->
+                    </div>
+                    <div class="grid-item">
+                        <span>Pizzas</span>
+                        <select name="alimentoPizzas" id="alimentoPizzas">
+                            <option value="">Seleccione una opción</option>
+                            <option value="Muzza">Muzzarella</option>
+                            <option value="JamYMor">Jamon y morrones</option>
+                            <option value="Fuga">Fugazzetta</option>
+                            <option value="Napo">Napolitana</option>
+                            <option value="4Que">4 quesos</option>
+                        </select>
+                        <div>
+                            <input type="text" id="cantidadPizzas" name="cantidadPizzas" placeholder="Unidades">
+                        </div>
+                        <!-- <button type="submit">Agregar</button> -->
+                    </div>
+                    <div class="grid-item">
+                        <span>Platos varios</span>
+                        <select name="alimentoPlatos" id="alimentoPlatos">
+                            <option value="">Seleccione una opción</option>
+                            <option value="BurgaCompleta">Hamburguesa completa</option>
+                            <option value="BurgaLYT">Hamburguesa L y T</option>
+                            <option value="BurgaC/Queso">Hamburguesa con queso</option>
+                            <!-- <option value="4"></option>
+                    <option value="5"></option> -->
+                        </select>
+                        <div>
+                            <input type="text" id="cantidadPlatos" name="cantidadPlatos" placeholder="Unidades">
+                        </div>
+                        <!-- <button type="submit">Agregar</button> -->
+                    </div>
+                    <div class="grid-item">
+                        <span>Entradas</span>
+                        <select name="alimentoEntradas" id="alimentoEntradas">
+                            <option value="">Seleccione una opción</option>
+                            <option value="Fritas">Fritas</option>
+                            <option value="BastonMuzza">Bastones de Muzzarella</option>
+                            <option value="Picada">Picada</option>
+                            <!--<option value="4"></option>
+                    <option value="5"></option> -->
+                        </select>
+                        <div>
+                            <input type="text" id="cantidadEntradas" name="cantidadEntradas" placeholder="Unidades">
+                        </div>
+                        <!-- <button type="submit">Agregar</button> -->
+                    </div>
+                    <div class="grid-item">
+                        <span>Postres</span>
+                        <select name="alimentoPostres" id="alimentoPostres">
+                            <option value="">Seleccione una opción</option>
+                            <option value="flan">Flan con DL</option>
+                            <option value="frutilla">Frutillas con crema</option>
+                            <option value="casata">Casata</option>
+                            <!-- <option value="4"></option>
+                    option value="5"></option> -->
+                        </select>
+                        <div>
+                            <input type="text" id="cantidadPostres" name="cantidadPostres" placeholder="Unidades">
+                        </div>
+                        <!-- <button type="submit">Agregar</button> -->
+                    </div>
+                </div>
+                <!-- <button type="submit">Agregar</button> -->
+                <div class="button-container">
+                    <input type="submit" id="agregar" name="agregar" value="agregar">
+                </div>
+            </form>
+            <div class="order-container">
+                <!-- <h3>En curso</h3> -->
+                <table id="order-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="button-container">
+                    <button type="submit">Preparar</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <script type="module" src="app.js"></script>
+    <script type="module" src="./tablaPedido.js"></script>
+    <script type="module" src="../alimentos.js"></script>
+</body>
+</html>
