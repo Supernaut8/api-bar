@@ -17,11 +17,22 @@ db.prepare(`
 `).run();
 
 db.prepare(`
-  CREATE TABLE IF NOT EXISTS alimento (
+  CREATE TABLE IF NOT EXISTS bebida (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT UNIQUE NOT NULL,
+    variedad TEXT UNIQUE NOT NULL,
     stock INTEGER,
     precio REAL    
+  )
+`).run();
+
+db.prepare(`
+  CREATE TABLE IF NOT EXISTS menu (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tipo TEXT,
+    variedad TEXT,
+    stock INTEGER,
+    precio REAL    
+    esBebida INTEGER DEFAULT 0
   )
 `).run();
 
@@ -32,13 +43,12 @@ db.prepare(`
     id_alimento INTEGER,    
     cantidad INTEGER,
     FOREIGN KEY("nro_mesa") REFERENCES "mesa"("nro")
-    FOREIGN KEY("id_alimento") REFERENCES "alimento"("id")
   )
 `).run();
 
-function guardarPedido(nro_mesa, alimento, cantidad) {
-  const stmt = db.prepare(`INSERT INTO pedido (nro_mesa, alimento, cantidad) VALUES (?, ?, ?)`);
-  stmt.run(nro_mesa, alimento, cantidad);
+function guardarPedido(nro_mesa, id_alimento, cantidad) {
+  const stmt = db.prepare(`INSERT INTO pedido (nro_mesa, id_alimento, cantidad) VALUES (?, ?, ?)`);
+  stmt.run(nro_mesa, id_alimento, cantidad);
 }
 
 function obtenerPedidos() {
@@ -46,24 +56,36 @@ function obtenerPedidos() {
   return stmt.all();
 }
 
-function guardarArticulo(nombre, cantidad, precio) {
-  const stmt = db.prepare(`INSERT INTO alimento (nombre, stock, precio)VALUES (?, ?, ?)
-                          ON CONFLICT(nombre) DO UPDATE SET
+function guardarBebida(variedad, tipo, stock, precio) {
+  const stmt = db.prepare(`INSERT INTO bebida (variedad, tipo, stock, precio)VALUES (?, ?, ?, ?)
+                          ON CONFLICT(variedad) DO UPDATE SET
                             stock = stock + excluded.stock,
                             precio = excluded.precio`);
-  stmt.run(nombre, cantidad, precio);
-  //const stmt = db.prepare(`INSERT INTO alimento (nombre, stock, precio) VALUES (?, ?, ?)`);
-  //stmt.run(nombre, stock, precio);
+  stmt.run(variedad, tipo, stock, precio);
+  //const stmt = db.prepare(`INSERT INTO alimento (variedad, tipo, stock, precio) VALUES (?, ?, ?)`);
+  //stmt.run(variedad, tipo, stock, precio);
 }
 
-function obtenerArticulos() {
-  const stmt = db.prepare(`SELECT * FROM alimento`);
+function obtenerBebidas() {
+  const stmt = db.prepare(`SELECT * FROM bebida`);
+  return stmt.all();
+}
+
+function guardarMenu(tipo, variedad, stock, precio) {
+  const stmt = db.prepare(`INSERT INTO menu (tipo, variedad, stock, precio)VALUES (?, ?, ?, ?)`);
+  stmt.run(tipo, variedad, stock, precio);
+}
+
+function obtenerMenus() {
+  const stmt = db.prepare(`SELECT * FROM menu`);
   return stmt.all();
 }
 
 module.exports = {
   guardarPedido,
   obtenerPedidos,
-  guardarArticulo,
-  obtenerArticulos
+  guardarBebida,
+  obtenerBebidas,
+  guardarMenu,
+  obtenerMenus
 };

@@ -1,4 +1,4 @@
-const tablaDeCompras = (articulos) => {
+const tablaDeCompras = (bebidas) => {
     
     const listadoDeCompra = document.getElementById("aggregate-table");
     listadoDeCompra.innerHTML = `        
@@ -6,21 +6,23 @@ const tablaDeCompras = (articulos) => {
             <th>Id_Artículo</th>
             <th>Proovedor</th>
             <th>Unidades</th>
+            <th>Tipo</th>
             <th>Descripción</th>
             <th>PrecioUnit</th>
             <th>Precio</th>
         </tr>   
               
     `;
-    articulos.forEach((articulo, index) => {
+    bebidas.forEach((bebida, index) => {
         const filaListado = document.createElement("tr");
         filaListado.innerHTML =`
             <td>${index + 1}</td>
-            <td>${articulo.proveedor}</td>
-            <td>${articulo.cantidad}</td>
-            <td>${articulo.descripcion}</td>
-            <td>${articulo.costoUnit}</td>
-            <td>${articulo.costoUnit * articulo.cantidad}</td>
+            <td>${bebida.proveedor}</td>
+            <td>${bebida.cantidad}</td>
+            <td>${bebida.tipo}</td>
+            <td>${bebida.descripcion}</td>
+            <td>${bebida.costoUnit}</td>
+            <td>${bebida.costoUnit * bebida.cantidad}</td>
         `;
         listadoDeCompra.appendChild(filaListado);
     });

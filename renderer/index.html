@@ -6,7 +6,7 @@
   <meta http-equiv="Content-Security-Policy"
       content="default-src 'self';
                script-src 'self' https://cdnjs.cloudflare.com;
-               style-src 'self' https://cdnjs.cloudflare.com;
+               style-src 'self' https://cdnjs.cloudflare.com 'unsafe-inline';
                font-src 'self' https://cdnjs.cloudflare.com;
                img-src 'self' data:;">
   <title>Menu principal</title>
@@ -50,9 +50,9 @@
         </div>
         <div class="grid-item">
           <div class="card-container">
-            <a href="./views/delivery">
+            <a href="./index.html">
               <img src="../assets/motorcycle-solid.svg" alt="icono de ingreso">
-              <span>Delivery</span>
+              <span>Delivery(Inactivo)</span>
             </a>
           </div>
         </div>
@@ -89,8 +89,7 @@
       <span id="email">Email: gnroces@gmail.com</span>
     </div>
   </footer>
-  
-  <script type="module" src="./horaEnPantalla.js"></script>
+  <script type="module" src="../renderer/scripts/horaEnPantalla.js"></script>
 </body>
 
 </html>

@@ -54,7 +54,7 @@
 
 // document.addEventListener("DOMContentLoaded", agregaAlimentos);
 
-import { tablaDePedido } from "./views/tablaPedido.js";
+import { tablaDePedido } from "../views/tablaPedido.js";
 import { guardarPedido, obtenerPedidos } from './db.js';
 window.api.guardarPedido(mesa, alimento, cantidad);
 

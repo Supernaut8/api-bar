@@ -24,11 +24,11 @@ body {
       #containerUser {
         /* display: flex;
         flex-direction: row; */
-        
+
         /* background-color: rgb(2, 2, 2);
         color: rgb(255, 255, 255);
         text-decoration: none; */
-      } 
+      }
 
       .back-container {
         display: flex;
@@ -37,6 +37,11 @@ body {
         width: 100px;
         border-radius: 12px;
         background-color: rgb(2, 2, 2);
+
+        a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+          }
 
         /* span {
           margin: auto;
@@ -66,14 +71,17 @@ body {
   }
 
   main {
-    height: 65vh;
-
+    min-height: 65vh;
+    
     .grid-container {
+      width: auto;
+      min-height: 450px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(100px, 250px));
       gap: 10px;
       justify-content: center;
       align-items: center;
+      /* margin-bottom: 100px; */
 
       .grid-item {
         margin: auto;
@@ -106,6 +114,7 @@ body {
             text-align: center;
             margin: 20px;
             font-family: sans-serif;
+            font-size: 18px;
           }
         }
       }
@@ -128,7 +137,7 @@ main {
   #main-menu {
     margin: auto;
     max-width: 1000px;
-    background-color: rgb(48, 38, 38);
+    background-color: rgb(2, 2, 2);
     opacity: 0.8;
 
     .card-container {
@@ -142,8 +151,8 @@ main {
   }
 }
 
-/* -----------------------------------------------------------------------------Estilos de pedidos---------------------------------------------------------------------------*/
-main {
+/* ---------------------------------------------------------------------Estilos de pedidos(pagina anulada)-------------------------------------------------------------------*/
+/* main {
   #orders-section {
     margin: auto;
     max-width: 1100px;
@@ -159,9 +168,9 @@ main {
       }
     }
   }
-}
+} */
 
-/* -----------------------------------------------------------------------------Estilos tipo de pedido-----------------------------------------------------------------------*/
+/* ---------------------------------------------------------------------Estilos tipo de pedido(pagina anulada)---------------------------------------------------------------*/
 /* main {
   #orders-section {
     .card-container {
@@ -170,7 +179,7 @@ main {
   }
 } */
 
-/* -----------------------------------------------------------------------------Estilos de pedido----------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------Estilos de pedido(mesas)-------------------------------------------------------------------------*/
 #order-body {
   background-image: url("../assets/mesas.jpg");
   background-size: cover;
@@ -180,7 +189,7 @@ main {
       background-color: rgb(2, 2, 2);
       opacity: 0.8;
       margin: auto;
-      max-width: 1400px;
+      width: auto;
       border: 1px solid black;
       border-radius: 12px;
       color: white;
@@ -196,6 +205,8 @@ main {
       }
 
       .grid-container {
+        height: auto;
+        
         .grid-item {
           display: flex;
           flex-direction: column;
@@ -227,16 +238,20 @@ main {
         align-items: center;
 
         #order-table {
-          /* background-color: rgb(2, 2, 2);
-        opacity: 0.8; */
+          width: auto;
           border: 1px solid rgb(218, 10, 90);
+        }
+
+        #total-container {
+          margin-top: 10px;
+          border: 1px solid rgb(218, 10, 90);;
         }
       }
     }
   }
 }
 
-/* -----------------------------------------------------------------------------Estilos de barra------------------------------------------------------------------------------*/
+/* -------------------------------------------------------------------------Estilos de pedido(barra)--------------------------------------------------------------------------*/
 #barra-body {
   background-image: url("../assets/barra2.jpg");
   background-size: cover;
@@ -251,11 +266,19 @@ main {
     color: white;
 
     .counter-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       margin: 50px auto;
       width: 200px;
       height: auto;
       font-family: sans-serif;
       border: 1px solid rgb(218, 10, 90);
+
+      #cantidadBebidas {
+        max-width: 60px;
+      }
     }
 
     .button-container {
@@ -272,17 +295,26 @@ main {
 .items-body {
   background-image: url("../assets/bebidas.jpg");
   background-size: cover;
-  
+
   .items-section {
     margin: auto;
     max-width: 1100px;
-    background-color: rgb(78, 78, 78);
+    background-color: rgb(2, 2, 2);
     opacity: 0.8;
-    
-    .grid-container a {
-      color: rgb(0, 0, 0);
-      text-decoration: none;
-      
+
+    .grid-container {
+      .grid-item {
+        .card-container {
+          background-color: rgb(255, 255, 255);
+          opacity: 0.8;
+
+          a {
+            text-decoration: none;
+            color: black;
+          }
+        }
+      }
+
     }
   }
 }
@@ -293,41 +325,82 @@ main {
   .items-section {
     margin: auto;
     max-width: 1100px;
-    background-color: rgb(48, 38, 38);
+    background-color: rgb(2, 2, 2);
     opacity: 0.8;
-    
-    .grid-container a {
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-      
+
+    .grid-container {
+      .grid-item {
+        .card-container {
+          background-color: rgb(255, 255, 255);
+          opacity: 0.8;
+
+          a {
+            text-decoration: none;
+            color: black;
+          }
+        }
+      }
+
     }
   }
 }
+
 /* -----------------------------------------------------------------------------Estilos de agrega artículos-------------------------------------------------------------------*/
 #addItems-section {
   #items-form {
+    margin: auto;
+    max-width: 1100px;
+
     .grid-container {
       display: flex;
       flex-direction: row;
       justify-content: center;
-      background-color: rgb(48, 38, 38);
+      background-color: rgb(2, 2, 2);
       opacity: 0.8;
 
       .grid-item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+        margin: 20px;
+
         span {
-          background-color: white;
+          color: white;
         }
 
-        width: auto;
-
-        /* .inputs-container {
+        .title-container {
           display: flex;
-          flex-direction: row; */
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          margin: auto;
 
-        /* input, select, span {
+          .title {
+            font-size: 22px;
+          }
+        }
+
+        .select-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          margin: 5px 0;
+        }
+
+        .inputs-container {
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          margin: 5px 0;
+
+          /* input, select, span {
             min-height: 30px;
-          } 
-        }*/
+          } */
+        }
       }
     }
   }
@@ -345,20 +418,45 @@ main {
       color: rgb(255, 255, 255);
     }
 
-    #aggregate-table {
-      border: 1px solid black;
-      background-color: rgb(255, 255, 255);
-      opacity: 0.8;
+    .table-container {
+      max-width: 1100px;
 
-      th {
+      #aggregate-table {
+
+        width: 1100px;
         border: 1px solid black;
-      }
+        background-color: rgb(255, 255, 255);
+        opacity: 0.8;
 
-      tr {
-        border: 1px solid black;
-
-        td {
+        th {
           border: 1px solid black;
+        }
+
+        tr {
+          border: 1px solid black;
+
+          td {
+            border: 1px solid black;
+          }
+        }
+      }
+      #aggregate-table1 {
+
+        width: 1100px;
+        border: 1px solid black;
+        background-color: rgb(255, 255, 255);
+        opacity: 0.8;
+
+        th {
+          border: 1px solid black;
+        }
+
+        tr {
+          border: 1px solid black;
+
+          td {
+            border: 1px solid black;
+          }
         }
       }
     }
@@ -398,7 +496,7 @@ footer {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-evenly; 
+    justify-content: space-evenly;
   }
 }
 

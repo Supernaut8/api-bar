@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Obtener y mostrar pedidos guardados
   console.log(window.api);
   const pedidos = window.api.obtenerPedidos();
-  const articulos = window.api.obtenerArticulos();
+  const bebidas = window.api.obtenerBebidas();
   tablaDePedido(pedidos);
 
   // Opcional: Podés cargar más cosas acá si agregás más funcionalidades

@@ -1,35 +1,20 @@
-// const { contextBridge } = require('electron');
-// const db = require('./db/database');
-
-// contextBridge.exposeInMainWorld('api', {
-//   getMesas: () => db.getMesas(),
-//   agregarComanda: (mesaId, detalles) => db.agregarComanda(mesaId, detalles)
-// });
-
 try {
   const { contextBridge } = require('electron');
   const db = require('./db/database.js');
 
-  //console.log("Preload: DB cargada correctamente");
-
   contextBridge.exposeInMainWorld('api', {
-    saludo: ()=> console.log("¡Hola desde el preload!"),
-    guardarPedido: (nro_mesa, alimento, cantidad) => db.guardarPedido(nro_mesa, alimento, cantidad),
+    saludo: () => console.log("¡Hola desde el preload!"),
+    guardarPedido: (nro_mesa, id_alimento, cantidad) => db.guardarPedido(nro_mesa, id_alimento, cantidad),
     obtenerPedidos: () => db.obtenerPedidos(),
-    guardarArticulo: (nombre, stock, precio) => db.guardarArticulo(nombre, stock, precio),
-    //obtenerArticulos: () => db.obtenerArticulos()
+    guardarBebida: (variedad, tipo, stock, precio) => db.guardarBebida(variedad, tipo, stock, precio),
+    obtenerBebidas: () => db.obtenerBebidas(),
+    guardarMenu: (tipo, variedad, stock, precio) => db.guardarMenu(tipo, variedad, stock, precio),
+    obtenerMenus: () => db.obtenerMenus()
   });
   console.log("Preload: DB cargada correctamente");
+
 } catch (err) {
   console.error("Error en preload.js:", err);
 }
 
 
-// const { contextBridge } = require('electron');
-// const path = require('path');
-// const db = require(path.join(__dirname, './db/database.js'));
-// contextBridge.exposeInMainWorld('api', {
-//   guardarPedido: (mesa, alimento, cantidad) => db.guardarPedido(mesa, alimento, cantidad),
-//   obtenerPedidos: () => db.obtenerPedidos()
-// });
-// console.log("preload ok")
