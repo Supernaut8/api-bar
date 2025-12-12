@@ -4,13 +4,13 @@ const agregarPedido = (alimentosDelPedido) => {
     form.addEventListener("submit", function (event) {
         event.preventDefault();
         //const datos = new FormData(form);
-        
+
         alimentosDelPedido.forEach(alimento => {
             const mesa = document.getElementById("mesaNro")
-        const nro_mesa = parseInt(mesa.innerText);
-        const cantidadStr = document.getElementById("cantidad");
-        const cantidad = parseInt(cantidadStr.innerText);
-            const id_alimento = alimento.id;
+            const nro_mesa = parseInt(mesa.innerText);
+            const cantidadStr = document.getElementById("cantidad");
+            const cantidad = parseInt(cantidadStr.innerText);
+            const id_alimento = alimento.id_alimento;
             console.log(cantidad)
             console.log(nro_mesa)
             console.log(id_alimento)
@@ -33,12 +33,13 @@ const agregarPedido = (alimentosDelPedido) => {
         //     console.log("Hola")
         //console.log(nro_mesa)
         //     console.log(cantidad)
-        
+
         // });
         const tabla = document.querySelector('#order-table');
         tabla.innerHTML = '';
+        showToast('Pedido cargado con exito', 'success');
         form.reset();
-        
+
     });
 }
 export { agregarPedido }

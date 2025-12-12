@@ -22,15 +22,16 @@ const agregaAlimentos = () => {
 
     const buscarAlimento = (nombre) => {
       let lista = alimentosData;
-      return lista.find(item => item.variedad === nombre);
+      return lista.find(item => item.descripcion === nombre);
     };
   
     const creaOpcionesSegunAlimento = (alimento) => {
       if (alimento == "bebidas") {
-        const bebidas = alimentosData.filter(alimento => alimento.esBebida == 1);
-        const tiposDeBebidas = bebidas.map(bebida => bebida.tipo)
+        // const bebidas = alimentosData.filter(alimento => alimento.esBebida == 1);
+        const bebidas = bebidasData
+        const tiposDeBebidas = bebidas.map(bebida => bebida.variedad)
         const clases = new Set(tiposDeBebidas);
-        const variedades = bebidas.map(bebida => bebida.variedad)
+        const variedades = bebidas.map(bebida => bebida.descripcion)
 
         console.log(tiposDeBebidas)
         console.log(clases)
@@ -44,20 +45,21 @@ const agregaAlimentos = () => {
         });
         varianteElegida.addEventListener("change", () => {
           const variante = varianteElegida.value.toLowerCase();
-          const variantes = bebidas.filter(bebida => bebida.tipo === variante)
+          const variantes = bebidas.filter(bebida => bebida.variedad === variante)
           console.log(variantes)
           opcionElegida.innerHTML = `<option value="">Seleccione una opción</option>`;
           variantes.forEach(variante => {
             const option = document.createElement("option");
-            option.value = variante.variedad;
-            option.textContent = variante.variedad;
+            option.value = variante.descripcion;
+            option.textContent = variante.descripcion;
             opcionElegida.appendChild(option);
           });
         });
       }
       else {
-        const comidas = alimentosData.filter(alimento => alimento.esBebida == 0);
-        const tiposDeComidas = comidas.map(comida => comida.tipo)
+        // const comidas = alimentosData.filter(alimento => alimento.esBebida == 0);
+        const comidas = comidasData
+        const tiposDeComidas = comidas.map(comida => comida.variedad)
         const clases = new Set(tiposDeComidas);
         const variedades = comidas.map(comida => comida.variedad)
         console.log(tiposDeComidas)
@@ -70,13 +72,13 @@ const agregaAlimentos = () => {
         });
         varianteElegida.addEventListener("change", () => {
           const variante = varianteElegida.value.toLowerCase();
-          const variantes = comidas.filter(comida => comida.tipo === variante)
+          const variantes = comidas.filter(comida => comida.variedad === variante)
           console.log(variantes)
           opcionElegida.innerHTML = `<option value="">Seleccione una opción</option>`;
           variantes.forEach(variante => {
             const option = document.createElement("option");
-            option.value = variante.variedad;
-            option.textContent = variante.variedad;
+            option.value = variante.descripcion;
+            option.textContent = variante.descripcion;
             opcionElegida.appendChild(option);
           });
         });
@@ -116,7 +118,8 @@ const agregaAlimentos = () => {
       const datos = new FormData(form);
       const nro_mesa = parseInt(datos.get("mesa"));
       if (!nro_mesa) {
-        alert("Debe seleccionar una mesa");
+        //alert("Debe seleccionar una mesa");
+        showToast("Debe seleccionar una mesa", 'warning');
         return;
       } 
 
@@ -152,7 +155,8 @@ const agregaAlimentos = () => {
       }
       
       if (pedidoActual.length === 0) {
-        alert("Debe completar al menos un alimento con cantidad válida");
+        //alert("Debe completar al menos un alimento con cantidad válida");
+        showToast('Debe completar al menos un alimento con cantidad válida', 'warning');
         return;
       }
 
@@ -161,6 +165,7 @@ const agregaAlimentos = () => {
       tablaDePedido(pedidos, totalPedido);
       agregarPedido(alimentosDelPedido);
       //window.api.guardarPedido(nro_mesa, id_alimento, cantidad);
+      
       form.reset();
     });
   });

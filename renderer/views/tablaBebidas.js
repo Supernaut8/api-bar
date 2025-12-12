@@ -21,9 +21,12 @@ const tablaDeBebidas = () => {
     bebidas.forEach(bebida => {
         const tbody = document.createElement("tbody")
         const row = document.createElement("tr");
+        const id_alimento = bebida.id_alimento
+        console.log(id_alimento)
+
         row.innerHTML = `
-            <td>${bebida.id}</td>
-            <td>${bebida.nombre}</td>
+            <td>${bebida.id_bebida}</td>
+            <td>${bebida.descripcion}</td>
             <td>${bebida.precio}</td>
             <td>
                 <button class="btn btn-warning" onclick="editarBebida(${bebida.id})">Editar</button>

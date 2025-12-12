@@ -2,16 +2,17 @@ import { tablaDeMenus } from "../views/tablaMenus.js";
 
 const agregaMenu = () => {
     const comidasData = window.api.obtenerMenus();
+    console.log(comidasData)
     document.addEventListener("DOMContentLoaded", () => {
         console.log("Dom Completamente cargado")
 
-        const variedadesEnDB = comidasData.map(comida => comida.variedad)
-        console.log(variedadesEnDB)
+        const menuEnDB = comidasData.map(comida => comida.descripcion)
+        console.log(menuEnDB)
 
         const tipoSeleccionado = document.getElementById("tipoDeComidas");
         const varianteElegida = document.getElementById("comidasVariantes");
         const tiposComidas = {
-            pizzas: ["Muzzarella", "Jamón y morrones"],
+            pizzas: ["Muzzarella", "Jamón y morrones", "Rucula", "Tomate y albahaca", "Provolone", "4 quesos"],
             sandwichs: ["Mila de pollo", "Milanesa", "Jamon y queso"],
             empanadas: ["Carne", "Jamón y queso"],
             entradas: ["Fritas", "Picada", "Bastones de muzza", "Canastas de queso y verdura"],
@@ -44,7 +45,8 @@ const agregaMenu = () => {
             const comida = datos.get("comidasVariantes");
 
             if (!comida) {
-                alert("No ingreso ningún menú");
+                //alert("No ingreso ningún menú");
+                showToast('No ingreso ningún menú', 'warning');
                 return;
             }
 
@@ -59,27 +61,30 @@ const agregaMenu = () => {
                 const variedad = datos.get(comidaId);
                 const precioStr = datos.get(costoUnitarioId);
                 const precio = parseFloat(precioStr);
-                const stock = 1
 
                 if (tipo && variedad && precio) {
-                    if (!variedadesEnDB.includes(variedad)) {
+                    if (!menuEnDB.includes(variedad)) {
                         comidaActual.push({
                             tipo: tipo,
                             descripcion: variedad,
                             costoUnit: precio
                         });
-                        window.api.guardarMenu(tipo, variedad, stock, precio);
+                        showToast('Nuevo menú agregado con exito', 'success');
+                        window.api.guardarMenu(variedad, tipo, precio);
                         menuRepetido = 0
                     }else {
-                        alert("El menú ya se encuentra cargado");
+                        //alert("El menú ya se encuentra cargado");
+                        showToast('Este menú ya existe', 'warning');
                         menuRepetido = 1
+                        return;
                     }
                 }
                 console.log(comidaActual)
             });
 
             if (comidaActual.length === 0 && !menuRepetido) {
-                alert("Tienes items sin completar");
+                //alert("Tienes items sin completar");
+                showToast('Tienes items sin completar', 'warning');
                 return;
             }
 
