@@ -1,37 +1,32 @@
 const tablaDePedido = (pedidosBebidas) => {
     const tablaPedidosBebidas = document.getElementById("orderBarTable");
     const pieDeTabla = document.createElement("tfoot");
-    // const botonAceptar = document.createElement("button");
-    // botonAceptar.setAttribute( "id", "aceptar");
-    
     let total = 0;
     
     tablaPedidosBebidas.innerHTML = `
         <thead>
             <tr>
                 <th>Unidades</th>
-                <th>Id_Alimento</th>
                 <th>Stock</th>
                 <th>Descripcion</th>
                 <th>Variedad</th>
-                <th>PrecioUnit</th>
-                <th>Precio</th>
+                <th>Precio X Unidad</th>
+                <th>Precio Total</th>
             </tr>
         </thead>
     `;
 
     pedidosBebidas.forEach(pedido => {
-        let precioUnitario = Math.round(pedido.precio);
+        let precioUnitario = pedido.precio;
         const tbody = document.createElement("tbody");
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${pedido.cantidad}</td>
-            <td>${pedido.id}</td>
             <td>${pedido.stock - pedido.cantidad}</td>
             <td>${pedido.descripcion}</td>
             <td>${pedido.variedad}</td>
-            <td>${precioUnitario}</td>
-            <td>${precioUnitario * pedido.cantidad}</td>
+            <td>$${precioUnitario}</td>
+            <td>$${precioUnitario * pedido.cantidad}</td>
         `;
         total = total + precioUnitario * pedido.cantidad;
         tbody.appendChild(row);
@@ -45,8 +40,7 @@ const tablaDePedido = (pedidosBebidas) => {
                 <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th>${total}</th>
+                <th>$${total}</th>
         </tr>
         `   
     tablaPedidosBebidas.appendChild(pieDeTabla);

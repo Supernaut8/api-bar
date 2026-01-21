@@ -1,6 +1,4 @@
 import { tablaDePedido } from "../views/tablaPedidoBarra.js";
-// import { showToast } from "../views/mensajesAlCLiente.js";
-// import { actualizarEfectivoEnCaja } from "./caja.js";
 
 let bebidasTipos = {};
 
@@ -13,6 +11,12 @@ const agregaBebidas = () => {
     const formEnvioPedido = document.getElementById("sendOrder-form")
     console.log(bebidasData);
     console.log(bebidasTipos);
+
+    //Armado de la descripción del pedido ocultando el título al inicio:
+    const titulo = document.getElementById("orderBarTitle");
+    titulo.textContent = "Pedido en curso:";
+    titulo.style.display = "none";
+    //---------------------------------------------
 
     selectTiposBebidas.innerHTML = '<option value="">Seleccione una opción</option>';
     bebidasTipos.forEach(bebida => {
@@ -38,13 +42,11 @@ const agregaBebidas = () => {
         });
     });
 
-    // const bebidaElegida = variante.value;
-    // console.log(bebidaElegida)
-    // pedidosBebidas.push(...bebidaElegida);
-    // tablaPedidoBarra(pedidosBebidas)
-
     form.addEventListener("submit", function (event) {
         event.preventDefault();
+
+        // Mostrar el título del pedido
+        titulo.style.display = "block";
 
         const datos = new FormData(form);
         const bebida = datos.get("alimentoBebidas");
@@ -68,16 +70,7 @@ const agregaBebidas = () => {
         console.log(variante);
         console.log(precio);
         comprobarDuplicados(bebida, variante, cantidad, precio, stock);
-        // const bebidaElegida = [
-        //     {
-        //         cantidad: cantidad,
-        //         descripcion: variante,
-        //         variedad: bebida,
-        //         precio: precio
-        //     }
-        // ]
-        // pedidosBebidas.push(...bebidaElegida);
-        // tablaDePedido(pedidosBebidas)
+
         function comprobarDuplicados(bebida, variante, cantidad, precio, stock) {
             if (pedidosBebidas.some(b => b.descripcion === variante)) {
                 const bebidaExistente = pedidosBebidas.find(b => b.descripcion === variante);
@@ -91,7 +84,7 @@ const agregaBebidas = () => {
                         id: id_bebida,
                         descripcion: variante,
                         variedad: bebida,
-                        precio: precio,
+                        precio: Math.round(precio),
                         stock: stock
                     }
                 ]
@@ -105,19 +98,18 @@ const agregaBebidas = () => {
     formEnvioPedido.addEventListener("submit", function (event) {
 
         event.preventDefault();
-        console.log("Hola")
         const pedidosBD = pedidosBebidas;
         console.log(pedidosBD)
 
         pedidosBD.forEach(pedido => {
-            const nro_mesa = 0;
+            const nro_mesa = 1; // Barra siempre es mesa 1
             const id_alimento = pedido.id;
             const cantidad = pedido.cantidad;
             let efectivo = 0;
-            efectivo = efectivo + pedido.precio * pedido.cantidad;
+            efectivo = efectivo + Math.round(pedido.precio) * pedido.cantidad;
 
             console.log(efectivo);
-            
+
 
             const registrarVenta = (efectivoNuevo) => {
                 // 1. Obtener el valor actual (o 0 si es la primera vez)
@@ -128,9 +120,6 @@ const agregaBebidas = () => {
 
                 // 3. Almacenar el nuevo valor en el localStorage (compartido entre pestañas)
                 localStorage.setItem('cajaEfectivo', nuevoTotal.toString());
-
-                // Opcional: Si quieres forzar la actualización de inmediato en la otra pestaña
-                // Puedes usar el evento storage o un BroadcastChannel (ver punto 2)
             }
 
             registrarVenta(efectivo);
@@ -138,11 +127,9 @@ const agregaBebidas = () => {
         })
         console.log("Pedido agregado correctamente!");
         showToast('El pedido fue agregado con exito', 'success');
-
-
         form.reset();
+        tablaDePedido([]); // Limpiar la tabla
     })
 }
 export { agregaBebidas }
-
 agregaBebidas();

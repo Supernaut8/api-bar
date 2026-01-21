@@ -1,16 +1,41 @@
 {
   "name": "app-bar",
   "version": "1.0.0",
+  "type": "module",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder",
+    "pack": "electron-builder --dir"
   },
   "keywords": [],
-  "author": "",
+  "author": "Nicolás Roces",
   "license": "ISC",
-  "description": "",
+  "description": "Aplicación de gestión de bares",
   "dependencies": {
-    "better-sqlite3": "^11.10.0",
-    "electron": "^36.2.1"
+    "better-sqlite3": "^11.10.0"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^3.7.2",
+    "electron": "^36.2.1",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.bar.appbar",
+    "productName": "ApiBar",
+    "copyright": "Copyright © 2025 ${author}",
+    "asar": true,
+    "files": [
+    "**/*", 
+    "!dist/*"
+  ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   }
 }

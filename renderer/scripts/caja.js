@@ -3,19 +3,16 @@ let displayCash1;
 
 const inicializaCaja = () => {
 
-    // document.addEventListener("DOMContentLoaded", () => {
-        // 1. Leer el valor inicial del storage
-        const valorGuardado = localStorage.getItem('cajaEfectivo');
+    // 1. Leer el valor inicial del storage
+    const valorGuardado = localStorage.getItem('cajaEfectivo');
 
-        displayCash = document.getElementById("openInput")
-        displayCash.value = "0";
+    displayCash = document.getElementById("openInput")
+    displayCash.value = "0";
 
-        displayCash1 = document.getElementById("closeInput")
-        // 2. Establecer el valor en el input (usando el valor guardado o '0')
-        displayCash1.value = valorGuardado ? valorGuardado : "0";
-        // let efectivoAlCierre = parseFloat(displayCash1.value);
-        // console.log(efectivoAlCierre);
-    // });
+    displayCash1 = document.getElementById("closeInput")
+    // 2. Establecer el valor en el input (usando el valor guardado o '0')
+    displayCash1.value = valorGuardado ? valorGuardado : "0";
+
 }
 
 // 3. Crear una función para actualizar el input cuando cambie el storage
@@ -25,22 +22,21 @@ const actualizarEfectivoEnCaja = () => {
     if (displayCash1 && valorGuardado) {
         displayCash1.value = valorGuardado;
     }
-    // let efectivoAlCierre = parseFloat(displayCash1.value, 10);
-    // console.log(efectivoAlCierre)
-    // efectivoAlCierre = efectivoAlCierre + efectivo;
-
-    // displayCash1.value = efectivoAlCierre.toString();
 }
 
 const resetearMonto = () => {
-    const displayCash = document.getElementById("openInput") 
-    displayCash.value = "0";
-    const displayCash1 = document.getElementById("closeInput")
-    displayCash1.value = "0";
+    const botonReset = document.getElementById("resetButton");
+    botonReset.addEventListener("click", () => {
+       // Agregar modal 'Esta seguro que desea resetear el monto? Se perderá todo registro previo de efectivo', 'warning');
+        console.log("Resetear monto");
+        localStorage.setItem('cajaEfectivo', '0');
+        actualizarEfectivoEnCaja();
+    });
+
 }
 
 const abrirCaja = () => {
-    const displayCash = document.getElementById("openInput") 
+    const displayCash = document.getElementById("openInput")
     alert(`Caja abierta con un monto inicial de: $${displayCash.value}`);
 }
 
@@ -48,7 +44,7 @@ const cerrarCaja = () => {
     const displayCash1 = document.getElementById("closeInput")
     alert(`Caja cerrada con un monto final de: $${displayCash1.value}`);
     displayCash1.value = "0";
-}   
+}
 
 // 4. Escuchar el evento 'storage' para detectar cambios de OTRA PESTAÑA
 window.addEventListener('storage', (event) => {
@@ -59,7 +55,8 @@ window.addEventListener('storage', (event) => {
 
 // Inicializar la caja cuando la página esté lista
 document.addEventListener("DOMContentLoaded", () => {
-    inicializaCaja()
+    inicializaCaja();
+    resetearMonto();
 });
 // inicializaCaja();
 

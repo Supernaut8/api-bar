@@ -1,13 +1,15 @@
+import { obtenerBebidas } from "../scripts/getData.js";
 let bebidasData = []
 
-const stockDeBebidas = () => {
-    const bebidas = window.api.obtenerBebidas();
+const stockDeBebidas = async () => {
+    const bebidas = await obtenerBebidas();
     bebidasData = bebidas;
 
     const tablaDeStock = document.getElementById("stockTable");
     tablaDeStock.innerHTML = `
         <thead>
             <tr>
+                <th scope="col">Id_alimento</th>
                 <th scope="col">Id_bebida</th>
                 <th scope="col">Descripcion</th>
                 <th scope="col">Variedad</th>
@@ -22,6 +24,7 @@ const stockDeBebidas = () => {
         const id_alimento = bebida.id_alimento;
 
         row.innerHTML = `
+            <td>${id_alimento}</td>
             <td>${bebida.id_bebida}</td>
             <td>${bebida.descripcion}</td>
             <td>${bebida.variedad}</td>

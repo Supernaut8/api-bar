@@ -1,8 +1,9 @@
+import { obtenerBebidas } from "../scripts/getData.js";
 
 let bebidasData = [];
 
-const tablaDeBebidas = () => {
-    const bebidas = window.api.obtenerBebidas();
+const tablaDeBebidas = async () => {
+    const bebidas = await obtenerBebidas();
     bebidasData = bebidas;
     console.log(bebidasData)
     
@@ -19,7 +20,7 @@ const tablaDeBebidas = () => {
     `;
 
     bebidas.forEach(bebida => {
-        const tbody = document.createElement("tbody")
+        const tbody = document.createElement("tbody");
         const row = document.createElement("tr");
         const id_alimento = bebida.id_alimento
         console.log(id_alimento)
@@ -29,13 +30,17 @@ const tablaDeBebidas = () => {
             <td>${bebida.descripcion}</td>
             <td>${bebida.precio}</td>
             <td>
-                <button class="btn btn-warning" onclick="editarBebida(${bebida.id})">Editar</button>
+                <button class="btn btn-warning" id="(${bebida.id})">Editar</button>
                 <button class="btn btn-danger" onclick="eliminarBebida(${bebida.id})">Eliminar</button>
             </td>
         `;
         tbody.appendChild(row)
         listadoDeBebidas.appendChild(tbody);
     });
+
+    document.addEventListener('click', (e) => {
+
+    })
 }
 
 export { tablaDeBebidas };

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos</title>
     <link rel="stylesheet" href="../styles.css">
-    <script defer src="/your-path-to-fontawesome/js/solid.js"></script>
 </head>
 
 <body>
@@ -14,7 +13,7 @@
         <nav>
             <div class="back-container">
                 <span>
-                    <a href="../index.html">Volver</a>
+                    <a class="buttonBack" href="../index.html">Volver</a>
                 </span>
             </div>
         </nav>
@@ -25,29 +24,36 @@
             <div class="grid-container">
                 <div class="grid-item">
                     <div class="card-container">
-                        <a href="./tipoDePedido.html">
+                        <a href="../index.html">
                             <img src="../../assets/list-solid.svg" alt="">
-                            <span>Nuevo</span>
+                            <span>Nuevo (inactivo)</span>
                         </a>
                     </div>
                 </div>
                 <div class="grid-item">
                     <div class="card-container">
-                        <a href="./pedidosEnCurso.html">
+                        <a href="../index.html">
                             <img src="../../assets/list-check-solid.svg" alt="">
-                            <span>En curso...</span>
+                            <span>En curso (inactivo)</span>
                         </a>
                     </div>
                 </div>
                 <div class="grid-item">
                     <div class="card-container">
-                        <a href="./pedido.html">
-                            <img src="../../assets/thumbs-up-solid.svg" alt="">
-                            <span>Cerrados</span>
+                        <a href="./ultimoPedido.html">
+                            <img src="../../assets/clock-rotate-left-solid-full.svg" alt="">
+                            <span>Último Pedido</span>
                         </a>
                     </div>
                 </div>
-
+                <div class="grid-item">
+                    <div class="card-container">
+                        <a href="./historialDePedidos.html">
+                            <img src="../../assets/folder-open-solid-full.svg" alt="">
+                            <span>Historial</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>

@@ -1,5 +1,11 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('path');
+import { app, BrowserWindow} from 'electron';
+import registerIpcHandlers  from './ipcHandlers.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { generarTicket80mm, ticket80mmHTML } from './tickets/ticket80mm.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function createWindow () {
   const win = new BrowserWindow({
@@ -9,11 +15,14 @@ function createWindow () {
       contextIsolation: true,
       nodeIntegration: false,
       sandbox: false,
-      preload: path.join(__dirname, 'preload.js')
+      preload: path.join(__dirname, 'preload.cjs')
     }
   });
 
-  win.loadFile('renderer/index.html');
+  win.loadFile(path.join(__dirname, 'renderer', 'index.html'));
 }
 
-app.whenReady().then(createWindow);
+app.whenReady().then(() => {
+  registerIpcHandlers();
+  createWindow();
+});

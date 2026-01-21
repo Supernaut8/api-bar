@@ -4,7 +4,7 @@ const tablaDeMenus = (comidas) => {
     listadoDeMenus.innerHTML = `        
         <tr>
             <th>Id_Menu</th>
-            <th>Tipo</th>
+            <th>Variedad</th>
             <th>Descripción</th>
             <th>Precio</th>
         </tr>   
@@ -14,7 +14,7 @@ const tablaDeMenus = (comidas) => {
         const filaListado = document.createElement("tr");
         filaListado.innerHTML =`
             <td>${index + 1}</td>
-            <td>${comida.tipo}</td>
+            <td>${comida.variedad}</td>
             <td>${comida.descripcion}</td>
             <td>${comida.costoUnit}</td>
         `;

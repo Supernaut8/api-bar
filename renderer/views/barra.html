@@ -16,7 +16,7 @@
         <nav>
             <div class="back-container">
                 <span>
-                    <a href="../index.html">Volver</a>
+                    <a class="buttonBack" href="../index.html">Volver</a>
                 </span>
             </div>
         </nav>
@@ -40,19 +40,19 @@
                     </div>
                 </div>
                 <div class="button-container">
-                    <input type="submit" id="agregar" name="agregar" value="Agregar al pedido">
+                    <input class="addButton" type="submit" id="agregar" name="agregar" value="Agregar al pedido">
                 </div>
             </form>
             <form id="sendOrder-form">
                 <div class="aggregate-container">
-                    <!-- <h3>Pedido</h3> -->
+                    <h3 id="orderBarTitle">Pedido en curso:</h3>
                     <div class="table-container">
                         <table id="orderBarTable"></table>
                     </div>
+                    <div id="total-container-BarTable"></div>
                 </div>
                 <div class="button-container">
-                    <!-- <button>Enviar Pedido</button> -->
-                    <input type="submit" id="enviar" name="enviar" value="Enviar Pedido">
+                    <input class="sendButton" type="submit" id="enviar" name="enviar" value="Enviar Pedido">
                 </div>
             </form>
         </section>
@@ -60,7 +60,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
         crossorigin="anonymous"></script>
-    <script src="./mensajesAlCLiente.js"></script>
+    <script src="../scripts/mensajesAlCLiente.js"></script>
     <script type="module" src="./tablaPedidoBarra.js"></script>
     <script type="module" src="../scripts/barra.js"></script>
 </body>

@@ -1,20 +1,16 @@
+import { obtenerMenus } from "./getData.js";
 import { tablaDeMenus } from "../views/tablaMenus.js";
 
 const agregaMenu = () => {
-    const comidasData = window.api.obtenerMenus();
-    console.log(comidasData)
+
     document.addEventListener("DOMContentLoaded", () => {
-        console.log("Dom Completamente cargado")
-
-        const menuEnDB = comidasData.map(comida => comida.descripcion)
-        console.log(menuEnDB)
-
         const tipoSeleccionado = document.getElementById("tipoDeComidas");
         const varianteElegida = document.getElementById("comidasVariantes");
         const tiposComidas = {
-            pizzas: ["Muzzarella", "Jamón y morrones", "Rucula", "Tomate y albahaca", "Provolone", "4 quesos"],
-            sandwichs: ["Mila de pollo", "Milanesa", "Jamon y queso"],
-            empanadas: ["Carne", "Jamón y queso"],
+            pizzas: ["Muzzarella chica", "Muzzarella gde.","Muzza porción"],
+            sandwichs: ["Sand.Mila de pollo", "Sand.Milanesa", "Sand.Jamon y queso"],
+            empanadas: ["Empanada de Carne", "Empanada de Jamón y queso", "Empanada de Cebolla y queso", "Empanada de Verdura",
+                "Empanada de Capresse", "Empanada de Bondiola y barbacoa", "Empanada de Vacio y provoleta"],
             entradas: ["Fritas", "Picada", "Bastones de muzza", "Canastas de queso y verdura"],
             postres: ["Helado", "otro"]
         };
@@ -39,13 +35,16 @@ const agregaMenu = () => {
         const comidas = []
         const form = document.getElementById("items-form")
 
-        form.addEventListener("submit", function (event) {
+        form.addEventListener("submit", async function (event) {
             event.preventDefault();
+            const comidasData = await obtenerMenus();
+            console.log(comidasData)
+            const menuEnDB = comidasData.map(comida => comida.descripcion)
+            console.log("Menús por descripción en base de datos: ", menuEnDB)
             const datos = new FormData(form);
             const comida = datos.get("comidasVariantes");
 
             if (!comida) {
-                //alert("No ingreso ningún menú");
                 showToast('No ingreso ningún menú', 'warning');
                 return;
             }
@@ -57,23 +56,22 @@ const agregaMenu = () => {
             let menuRepetido = 0
 
             detalles.forEach(({ tipoId, comidaId, costoUnitarioId }) => {
-                const tipo = datos.get(tipoId);
-                const variedad = datos.get(comidaId);
+                const variedad = datos.get(tipoId);
+                const descripcion = datos.get(comidaId);
                 const precioStr = datos.get(costoUnitarioId);
                 const precio = parseFloat(precioStr);
-
-                if (tipo && variedad && precio) {
-                    if (!menuEnDB.includes(variedad)) {
+                
+                if (variedad && descripcion) {
+                    if (!menuEnDB.includes(descripcion)) {
                         comidaActual.push({
-                            tipo: tipo,
-                            descripcion: variedad,
+                            variedad: variedad,
+                            descripcion: descripcion,
                             costoUnit: precio
                         });
                         showToast('Nuevo menú agregado con exito', 'success');
-                        window.api.guardarMenu(variedad, tipo, precio);
+                        window.api.guardarMenu({descripcion, variedad, precio});
                         menuRepetido = 0
-                    }else {
-                        //alert("El menú ya se encuentra cargado");
+                    } else {
                         showToast('Este menú ya existe', 'warning');
                         menuRepetido = 1
                         return;
@@ -83,7 +81,6 @@ const agregaMenu = () => {
             });
 
             if (comidaActual.length === 0 && !menuRepetido) {
-                //alert("Tienes items sin completar");
                 showToast('Tienes items sin completar', 'warning');
                 return;
             }
