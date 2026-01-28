@@ -24,7 +24,8 @@
     </header>
     <main>
         <section id="addItems-section">
-            <div class="toast-container position-fixed top-50 start-50 translate-middle d-flex justify-content-center align-items-center" style="z-index: 1050; width: 100%;"></div>
+            <div class="toast-container position-fixed top-50 start-50 translate-middle d-flex justify-content-center align-items-center"
+                style="z-index: 1050; width: 100%;"></div>
             <form id="items-form">
                 <div class="grid-container">
                     <div class="grid-item">
@@ -32,20 +33,27 @@
                             <span class="title">Bebidas</span>
                         </div>
                         <div class="select-container">
-                            <select name="tipoDeBebidas" id="tipoDeBebidas">
-                                <option value="">Seleccione un tipo de bebida</option>
-                                <option value="aguas">Aguas</option>
-                                <option value="gaseosas">Gaseosas</option>
-                                <option value="cerveza">Bebidas c/alcohol en lata</option>
-                                <option value="cerveza2">Cerveza de litro</option>
-                                <option value="cerveza3">Cerveza artesanal</option>
-                                <option value="tragos">Tragos</option>
-                                <option value="tragos2">Tragos de litro</option>
-                                <option value="vinos">Vinos</option>
-                            </select>
-                            <select name="bebidasVariantes" id="bebidasVariantes">
-                                <option value="">Seleccione bebida</option>
-                            </select>
+                            <div class="box-container">
+                                <span>Primero seleccione el tipo de bebida</span>
+                                <select name="tipoDeBebidas" id="tipoDeBebidas">
+                                    <option value="">Seleccione un tipo de bebida</option>
+                                    <option value="aguas">Aguas</option>
+                                    <option value="gaseosas">Gaseosas</option>
+                                    <option value="cerveza">Bebidas c/alcohol en lata</option>
+                                    <option value="cerveza2">Cerveza de litro</option>
+                                    <option value="cerveza3">Cerveza artesanal</option>
+                                    <option value="tragos">Tragos</option>
+                                    <option value="tragos2">Tragos de litro</option>
+                                    <option value="vinos">Vinos</option>
+                                </select>
+                            </div>
+                            <div class="box-container">
+                                <span>Luego elija una opción de la lista o agregue nueva variante</span>
+                                <select name="bebidasVariantes" id="bebidasVariantes">
+                                    <option value="">Seleccione bebida</option>
+                                </select>
+                                <input type="text" id="nuevoItem" name="nuevoItem" placeholder="Escriba nueva variante">
+                            </div>
                         </div>
                         <div class="inputs-container">
                             <!-- <input type="text" id="descripcion" name="descripcion" placeholder="Descripcion"> -->

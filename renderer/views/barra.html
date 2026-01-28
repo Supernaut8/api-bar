@@ -24,9 +24,11 @@
     </header>
     <main>
         <section id="counter-section">
-            <div class="toast-container position-fixed top-50 start-50 translate-middle d-flex justify-content-center align-items-center" style="z-index: 1050; width: 100%;"></div>
+            <div class="toast-container position-fixed top-50 start-50 translate-middle d-flex justify-content-center align-items-center" 
+                style="z-index: 1050; width: 100%;">
+            </div>
             <form id="orderBar-form">
-                <div class="counter-item">
+                <!-- <div class="counter-item">
                     <div class="options-container">
                         <span>Bebidas</span>
                         <select name="alimentoBebidas" id="alimentoBebidas"></select>
@@ -37,6 +39,32 @@
                     </div>
                     <div class="options-container">
                         <input type="text" id="cantidadBebidas" name="cantidadBebidas" placeholder="Unidades">
+                    </div>
+                </div>
+                <div class="button-container">
+                    <input class="addButton" type="submit" id="agregar" name="agregar" value="Agregar al pedido">
+                </div> -->
+                <div class="grid-container">
+                    <div class="grid-item">
+                        <span>Alimentos</span>
+                        <div class="select-container">
+                            <!-- <span>Alimentos</span> -->
+                            <select name="items" id="items">
+                                <option value="">Seleccione una opción</option>
+                                <option value="bebidas">Bebidas</option>
+                                <option value="comidas">Comidas</option>
+                            </select>
+                            <select name="itemsVariantes" id="itemsVariantes">
+                                <option value="">Seleccione alimento</option>
+                            </select>
+                            <select name="itemsOpcion" id="itemsOpcion">
+                                <option value="">Seleccione variante</option>
+                            </select>
+                            <div>
+                                <input type="text" id="alimentosCantidadBarra" name="alimentosCantidadBarra"
+                                    placeholder="Unidades">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="button-container">

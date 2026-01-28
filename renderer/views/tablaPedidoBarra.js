@@ -1,49 +1,44 @@
-const tablaDePedido = (pedidosBebidas) => {
-    const tablaPedidosBebidas = document.getElementById("orderBarTable");
+const tablaDePedido = (pedidos, totalPedido) => {
+    const tablaPedidos = document.getElementById("orderBarTable");
     const pieDeTabla = document.createElement("tfoot");
-    let total = 0;
     
-    tablaPedidosBebidas.innerHTML = `
+    tablaPedidos.innerHTML = `
         <thead>
             <tr>
                 <th>Unidades</th>
                 <th>Stock</th>
                 <th>Descripcion</th>
-                <th>Variedad</th>
                 <th>Precio X Unidad</th>
                 <th>Precio Total</th>
             </tr>
         </thead>
     `;
 
-    pedidosBebidas.forEach(pedido => {
-        let precioUnitario = pedido.precio;
+    pedidos.forEach(pedido => {
         const tbody = document.createElement("tbody");
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td>${pedido.cantidad}</td>
+            <td id="cantidad">${pedido.cantidad}</td>
             <td>${pedido.stock - pedido.cantidad}</td>
-            <td>${pedido.descripcion}</td>
-            <td>${pedido.variedad}</td>
-            <td>$${precioUnitario}</td>
-            <td>$${precioUnitario * pedido.cantidad}</td>
+            <td id="nombre">${pedido.nombre}</td>        
+            <td>$${pedido.precioUnit}</td>
+            <td>$${pedido.subtotal}</td>
         `;
-        total = total + precioUnitario * pedido.cantidad;
+        // total = total + precioUnitario * pedido.cantidad;
         tbody.appendChild(row);
-        tablaPedidosBebidas.appendChild(tbody);
+        tablaPedidos.appendChild(tbody);
     });
 
-    pieDeTabla.innerHTML =  `
+    pieDeTabla.innerHTML = `
         <tr>
                 <th>Total</th>
                 <th></th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th>$${total}</th>
+                <th>$${totalPedido}</th>
         </tr>
-        `   
-    tablaPedidosBebidas.appendChild(pieDeTabla);
+        `
+    tablaPedidos.appendChild(pieDeTabla);
 }
 
 export { tablaDePedido }

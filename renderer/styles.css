@@ -24,7 +24,7 @@ body {
       opacity: 0.8;
       color: rgb(255, 255, 255);
 
-      
+
       /* #containerLogo {
         img {
           width: 80px;
@@ -41,6 +41,7 @@ body {
           font-family: "Poller One", sans-serif;
         }
       }
+
       .back-container {
         display: flex;
         flex-direction: row;
@@ -248,7 +249,7 @@ main {
 
         div {
           input {
-            max-width: 100px;
+            max-width: 76px;
           }
         }
       }
@@ -343,25 +344,28 @@ main {
     color: white;
 
     #orderBar-form {
-      .counter-item {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 50px auto;
-        width: 300px;
-        height: auto;
-        font-family: sans-serif;
-        border: 1px solid rgb(218, 10, 90);
-
-        options-container {
+      .grid-container {
+        .grid-item {
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          margin: 50px auto;
+          width: 300px;
+          height: auto;
+          font-family: sans-serif;
+          border: 1px solid rgb(218, 10, 90);
 
-          #cantidadBebidas {
-            max-width: 80px;
+          .select-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+
+            #alimentosCantidadBarra {
+              max-width: 76px;
+            }
           }
         }
       }
@@ -390,56 +394,58 @@ main {
       }
     }
 
-    .aggregate-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 50px auto;
+    #sendOrder-form {
+      .aggregate-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 50px auto;
 
-      h3 {
-        font-family: "Poller One", sans-serif;
-        background-color: rgb(2, 2, 2);
-        opacity: 0.8;
-        color: rgb(255, 255, 255);
-      }
+        h3 {
+          font-family: "Poller One", sans-serif;
+          background-color: rgb(2, 2, 2);
+          opacity: 0.8;
+          color: rgb(255, 255, 255);
+        }
 
-      .table-container {
-        max-width: 1200px;
+        .table-container {
+          max-width: 1200px;
 
-        #orderBarTable {
-          width: 800px;
-          border: 1px solid rgb(218, 10, 90);
-
-          th,
-          td {
-            text-align: center;
+          #orderBarTable {
+            width: 800px;
             border: 1px solid rgb(218, 10, 90);
+
+            th,
+            td {
+              text-align: center;
+              border: 1px solid rgb(218, 10, 90);
+            }
           }
         }
       }
-    }
 
-    .button-container {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      margin: 30px;
-    }
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 30px;
+      }
 
-    .sendButton {
-      display: flex;
-      flex-direction: row;
-      padding: 8px 12px;
-      border: 1px solid rgb(56, 173, 27);
-      border-radius: 8px;
-      background-color: black;
-      color: rgb(255, 255, 255);
-      text-decoration: none;
-    }
+      .sendButton {
+        display: flex;
+        flex-direction: row;
+        padding: 8px 12px;
+        border: 1px solid rgb(56, 173, 27);
+        border-radius: 8px;
+        background-color: black;
+        color: rgb(255, 255, 255);
+        text-decoration: none;
+      }
 
-    .sendButton:hover {
-      background-color: rgb(56, 173, 27);
+      .sendButton:hover {
+        background-color: rgb(56, 173, 27);
+      }
     }
   }
 }
@@ -499,7 +505,7 @@ main {
   }
 }
 
-/* -----------------------------------------------------------------------------Estilos de agrega artículos-------------------------------------------------------------------*/
+/* -----------------------------------------------------------------------------Estilos de agrega bebidas-------------------------------------------------------------------*/
 #addItems-section {
   #items-form {
     margin: auto;
@@ -541,7 +547,24 @@ main {
           flex-direction: row;
           justify-content: center;
           align-items: center;
-          margin: 5px 0;
+          margin: 20px;
+
+          #tipoDeBebidas {
+            margin: 15px;
+            border: 1px solid rgb(218, 10, 90);
+          }
+
+          .box-container {
+            span {
+              padding: 15px;
+              font-style: italic;
+            }
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid rgb(218, 10, 90);
+          }
         }
 
         .inputs-container {

@@ -28,7 +28,7 @@ const tablaDePedido = (pedidos, totalPedido) => {
             <td>$${pedido.precioUnit}</td>
             <td>$${pedido.subtotal}</td>
             
-        `
+        `;
         const contenedorPrecio = document.getElementById("total-container")
         contenedorPrecio.innerHTML = `
             <span>Total:</span>

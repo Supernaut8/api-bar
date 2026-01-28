@@ -1,135 +1,159 @@
+import { obtenerAlimentos, obtenerBebidas, obtenerMenus } from "./getData.js";
+import { agregarPedido } from "./agregaPedidosBarra.js";
 import { tablaDePedido } from "../views/tablaPedidoBarra.js";
 
-let bebidasTipos = {};
+let pedidos = [];
+let totalPedido = 0;
 
-const agregaBebidas = () => {
-    let bebidasData = window.api.obtenerBebidas();
-    bebidasTipos = new Set(bebidasData.map(bebida => bebida.variedad));
-    const pedidosBebidas = [];
-    const selectTiposBebidas = document.getElementById('alimentoBebidas');
-    const form = document.getElementById("orderBar-form");
-    const formEnvioPedido = document.getElementById("sendOrder-form")
-    console.log(bebidasData);
-    console.log(bebidasTipos);
+const armaPedidoBarra = () => {
+  document.addEventListener("DOMContentLoaded", async () => {
+    const comidas = await obtenerMenus();
+    const bebidas = await obtenerBebidas();
+    const alimentos = await obtenerAlimentos();
+    const alimentosDelPedido = [];
+
+    console.log(comidas);
+    console.log(bebidas);
+    console.log(alimentos);
 
     //Armado de la descripción del pedido ocultando el título al inicio:
     const titulo = document.getElementById("orderBarTitle");
     titulo.textContent = "Pedido en curso:";
     titulo.style.display = "none";
-    //---------------------------------------------
+    //------------------------------------------------------------------
 
-    selectTiposBebidas.innerHTML = '<option value="">Seleccione una opción</option>';
-    bebidasTipos.forEach(bebida => {
-        const option = document.createElement('option');
-        option.value = bebida;
-        option.textContent = bebida;
-        selectTiposBebidas.appendChild(option);
-    });
+    // //Manejo del boton de impresion de ticket
+    // const botonImprimir = document.getElementById("imprimir");
+    // botonImprimir.textContent = "Imprimir Ticket";
+    // botonImprimir.style.display = "none";
+    // //------------------------------------------------------------------
 
-    selectTiposBebidas.addEventListener('change', () => {
-        const tipoElegido = selectTiposBebidas.value.toLowerCase();
-        const variantes = bebidasData.filter(bebida => bebida.variedad == tipoElegido);
+    const buscarAlimento = (nombre) => {
+      let lista = alimentos;
+      return lista.find(item => item.descripcion === nombre);
+    };
+
+    const creaOpcionesSegunAlimento = (alimentoSeleccionado) => {
+      const seleccionadoOpciones = alimentos.filter(alimento => alimento.tipo == alimentoSeleccionado);
+      console.log(seleccionadoOpciones)
+      const variedades = seleccionadoOpciones.map(alimento => alimento.variedad);
+      const tipos = {
+        aguas: "Aguas",
+        gaseosas: "Gaseosas",
+        cerveza: "Bebidas c/alcohol latas",
+        cerveza2: "Cervezas litro",
+        cerveza3: "Cerveza artesanal",
+        tragos: "Tragos",
+        tragos2: "Tragos de litro",
+        vinos: "Vinos",
+        pizzas: "Pizzas",
+        sandwichs: "Sandwichs",
+        empanadas: "Empanadas",
+        entradas: "Entradas",
+        postres: "Postres"
+      }
+
+      //Para eliminar las opciones repetidas..
+      const clases = new Set(variedades);
+      console.log(seleccionadoOpciones)
+      console.log(clases)
+      console.log(variedades)
+
+      clases.forEach(clase => {
+        const option = document.createElement("option");
+        option.value = clase;
+        option.textContent = tipos[clase];
+        varianteElegida.appendChild(option);
+      });
+      varianteElegida.addEventListener("change", () => {
+        const variante = varianteElegida.value.toLowerCase();
+        const variantes = seleccionadoOpciones.filter(alimento => alimento.variedad === variante)
         console.log(variantes)
-        const selectVariantesBebidas = document.getElementById("bebidasVariantes")
-        selectVariantesBebidas.innerHTML = '<option value="">Seleccione una opción</option>';
+        opcionElegida.innerHTML = `<option value="">Seleccione una opción</option>`;
         variantes.forEach(variante => {
-            const option = document.createElement("option");
-            option.value = variante.descripcion;
-            option.textContent = variante.descripcion;
-            selectVariantesBebidas.appendChild(option);
-            const bebidaElegida = option.value;
-            console.log(bebidaElegida)
+          const option = document.createElement("option");
+          option.value = variante.descripcion;
+          option.textContent = variante.descripcion;
+          opcionElegida.appendChild(option);
         });
+      });
+    };
+
+    const alimentoElegido = document.getElementById("items");
+    const varianteElegida = document.getElementById("itemsVariantes");
+    const opcionElegida = document.getElementById("itemsOpcion");
+    const form = document.getElementById("orderBar-form");
+
+    alimentoElegido.addEventListener("change", () => {
+      const alimentoSeleccionado = alimentoElegido.value.toLowerCase();
+
+      varianteElegida.innerHTML = `<option value="">Seleccione una opción</option>`;
+
+      creaOpcionesSegunAlimento(alimentoSeleccionado);
     });
 
     form.addEventListener("submit", function (event) {
-        event.preventDefault();
+      event.preventDefault();
 
+
+      const pedidoActual = [];
+      const datos = new FormData(form);
+      const nro_mesa = 0;
+      
+      const nombre = datos.get("itemsOpcion");
+      const cantidadStr = datos.get("alimentosCantidadBarra");
+      const cantidad = parseInt(cantidadStr);
+
+      if (nombre && cantidadStr && !isNaN(cantidad) && cantidad > 0) {
         // Mostrar el título del pedido
         titulo.style.display = "block";
 
-        const datos = new FormData(form);
-        const bebida = datos.get("alimentoBebidas");
-        const variante = datos.get("bebidasVariantes");
-        const cantidadStr = datos.get("cantidadBebidas");
-        const cantidad = parseInt(cantidadStr);
-
-        let bebidaActual = [];
-
-
-        if (!bebida || !variante || !cantidad) {
-            showToast('Todos los campos son obligatorios.', 'warning');
-            return;
+        // Buscar el alimento por nombre
+        const alimento = buscarAlimento(nombre);
+        console.log(alimento);
+        if (!alimento) {
+          console.warn(`Alimento no encontrado: ${nombre}`);
+          return;
         }
-        const precio = bebidasData.find(b => b.descripcion == variante).precio;
-        const id_bebida = bebidasData.find(b => b.descripcion == variante).id_alimento;
-        const stock = bebidasData.find(b => b.descripcion == variante).stock;
 
-        console.log(bebida);
-        console.log(id_bebida);
-        console.log(variante);
-        console.log(precio);
-        comprobarDuplicados(bebida, variante, cantidad, precio, stock);
+        let efectivo = 0;
+        let stock = 0;
+        const { precio } = alimento;
+        const subtotal = precio * cantidad;
+        if (alimento.tipo == 'bebidas')
+          stock = bebidas.find(bebida => bebida.id_alimento === alimento.id_alimento).stock;
+        efectivo = efectivo + alimento.precio * cantidad;
+        console.log(alimento.precio, cantidad, efectivo);
+        alimentosDelPedido.push(alimento)
 
-        function comprobarDuplicados(bebida, variante, cantidad, precio, stock) {
-            if (pedidosBebidas.some(b => b.descripcion === variante)) {
-                const bebidaExistente = pedidosBebidas.find(b => b.descripcion === variante);
-                const indice = pedidosBebidas.indexOf(bebidaExistente);
-                pedidosBebidas[indice].cantidad += cantidad;
-            }
-            else {
-                bebidaActual = [
-                    {
-                        cantidad: cantidad,
-                        id: id_bebida,
-                        descripcion: variante,
-                        variedad: bebida,
-                        precio: Math.round(precio),
-                        stock: stock
-                    }
-                ]
-            }
-            pedidosBebidas.push(...bebidaActual);
-            tablaDePedido(pedidosBebidas);
-        }
-        form.reset();
+        // Agregar al pedido mostrado
+        pedidoActual.push({
+          nro_mesa: nro_mesa,
+          cantidad: cantidad,
+          stock: stock || 1,
+          nombre: nombre,
+          tipo: alimento.tipo,
+          precioUnit: Math.round(precio),
+          subtotal: Math.round(subtotal)
+        });
+
+        totalPedido += Math.round(subtotal);
+      }
+
+      if (pedidoActual.length === 0) {
+        showToast('Debe completar al menos un alimento con cantidad válida', 'warning');
+        return;
+      }
+
+      pedidos.push(...pedidoActual);
+      // Mostrar en la tabla
+      tablaDePedido(pedidos, totalPedido);
+
+      agregarPedido(pedidos);
+
+      form.reset();
+
     });
-
-    formEnvioPedido.addEventListener("submit", function (event) {
-
-        event.preventDefault();
-        const pedidosBD = pedidosBebidas;
-        console.log(pedidosBD)
-
-        pedidosBD.forEach(pedido => {
-            const nro_mesa = 1; // Barra siempre es mesa 1
-            const id_alimento = pedido.id;
-            const cantidad = pedido.cantidad;
-            let efectivo = 0;
-            efectivo = efectivo + Math.round(pedido.precio) * pedido.cantidad;
-
-            console.log(efectivo);
-
-
-            const registrarVenta = (efectivoNuevo) => {
-                // 1. Obtener el valor actual (o 0 si es la primera vez)
-                let efectivoActual = parseFloat(localStorage.getItem('cajaEfectivo')) || 0;
-
-                // 2. Calcular y guardar el nuevo total
-                let nuevoTotal = efectivoActual + efectivoNuevo;
-
-                // 3. Almacenar el nuevo valor en el localStorage (compartido entre pestañas)
-                localStorage.setItem('cajaEfectivo', nuevoTotal.toString());
-            }
-
-            registrarVenta(efectivo);
-            window.api.guardarPedido(nro_mesa, id_alimento, cantidad);
-        })
-        console.log("Pedido agregado correctamente!");
-        showToast('El pedido fue agregado con exito', 'success');
-        form.reset();
-        tablaDePedido([]); // Limpiar la tabla
-    })
-}
-export { agregaBebidas }
-agregaBebidas();
+  });
+};
+armaPedidoBarra();

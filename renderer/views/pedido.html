@@ -30,7 +30,8 @@
     <main>
         <section id="order-section">
             <div class="toast-container position-fixed top-50 start-50 translate-middle d-flex justify-content-center align-items-center"
-                style="z-index: 1050; width: 100%;"></div>
+                style="z-index: 1050; width: 100%;">
+            </div>
             <form id="order-form">
                 <div class="barTable-container">
                     <span>Mesa</span>
@@ -43,6 +44,9 @@
                         <option value="5">5</option>
                         <option value="6">6</option>
                         <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
                     </select>
                 </div>
                 <div class="grid-container">
@@ -64,17 +68,16 @@
                                 <input type="text" id="alimentosCantidad" name="alimentosCantidad"
                                     placeholder="Unidades">
                             </div>
-                            <div class="button-container">
-                                <input class="addButton" type="submit" id="agregarAlimento" name="agregarAlimento"
-                                    value="Agregar">
-                            </div>
                         </div>
                     </div>
+                </div>
+                <div class="button-container">
+                    <input class="addButton" type="submit" id="agregarAlimento" name="agregarAlimento" value="Agregar">
                 </div>
             </form>
             <form id="order">
                 <div class="order-container">
-                    <h3 id="OrderTitle">Pedido en curso:</h3>
+                    <h3 id="orderTitle">Pedido en curso:</h3>
                     <div class="table-container">
                         <table id="order-table"></table>
                     </div>

@@ -8,7 +8,7 @@ let totalPedido = 0;
 export function limpiarEstadoPedido() {
   pedidos = [];
   totalPedido = 0;
-  const titulo = document.getElementById("OrderTitle");
+  const titulo = document.getElementById("orderTitle");
   if (titulo) titulo.style.display = "none";
   // Si tienes un contenedor de tabla, vacíalo también aquí
   const tabla = document.querySelector('#order-table'); // Ajusta el ID según tu tabla
@@ -28,7 +28,7 @@ const armaPedido = () => {
     console.log(alimentos);
 
     //Armado de la descripción del pedido ocultando el título al inicio:
-    const titulo = document.getElementById("OrderTitle");
+    const titulo = document.getElementById("orderTitle");
     titulo.textContent = "Pedido en curso:";
     titulo.style.display = "none";
     //------------------------------------------------------------------
@@ -152,7 +152,6 @@ const armaPedido = () => {
       const datos = new FormData(form);
       const nro_mesa = parseInt(datos.get("mesa"));
       if (!nro_mesa) {
-        //alert("Debe seleccionar una mesa");
         showToast("Debe seleccionar una mesa", 'warning');
         return;
       }
